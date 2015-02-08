@@ -1,20 +1,20 @@
-//Allows multiple SceneView cameras in the editor to be setup to follow gameobjects.
+﻿//Allows multiple SceneView cameras in the editor to be setup to follow gameobjects.
 //October 2012 - Joshua Berberick
- 
+
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
- 
+
 [ExecuteInEditMode]
 public class SceneViewCameraFollower : MonoBehaviour
 {
-#if UNITY_EDITOR
- 
+	#if UNITY_EDITOR
+	
 	public bool on = true;
 	public bool onlyInPlayMode = false;
 	public SceneViewFollower[] sceneViewFollowers;
 	private ArrayList sceneViews;
- 
+	
 	void LateUpdate()
 	{
 		if(sceneViewFollowers != null && sceneViews != null)
@@ -26,22 +26,22 @@ public class SceneViewCameraFollower : MonoBehaviour
 				svf.sceneViewIndex = Mathf.Clamp(svf.sceneViewIndex, 0, sceneViews.Count-1);
 			}
 		}
- 
+		
 		if(Application.isPlaying)
 			Follow();
 	}
- 
+	
 	public void OnDrawGizmos()
 	{
 		if(!Application.isPlaying)
 			Follow();
 	}
- 
+	
 	void Follow()
 	{
 		sceneViews = UnityEditor.SceneView.sceneViews;
 		if(sceneViewFollowers == null || !on || sceneViews.Count == 0) return;
- 
+		
 		foreach(SceneViewFollower svf in sceneViewFollowers)
 		{	
 			if(!svf.enable) continue;
@@ -56,7 +56,7 @@ public class SceneViewCameraFollower : MonoBehaviour
 			}
 		}	
 	}
- 
+	
 	[System.Serializable]
 	public class SceneViewFollower
 	{
@@ -68,7 +68,7 @@ public class SceneViewCameraFollower : MonoBehaviour
 		public float size;
 		public bool orthographic;
 		public int sceneViewIndex;
- 
+		
 		SceneViewFollower()
 		{
 			enable = false;
@@ -80,6 +80,6 @@ public class SceneViewCameraFollower : MonoBehaviour
 			sceneViewIndex = 0;
 		}
 	}
- 
-#endif
+	
+	#endif
 }

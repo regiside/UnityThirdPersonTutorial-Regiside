@@ -8,6 +8,8 @@ Material:
   m_PrefabInternal: {fileID: 0}
   m_Name: MainMat
   m_Shader: {fileID: 4800000, guid: b652dab72d918bb46a4bf53592b58f58, type: 3}
+  m_ShaderKeywords: []
+  m_CustomRenderQueue: -1
   m_SavedProperties:
     serializedVersion: 2
     m_TexEnvs:
